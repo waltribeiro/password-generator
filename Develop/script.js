@@ -7,15 +7,20 @@ var generateBtn = document.querySelector("#generate");
 var uppercase = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",];
 var lowercase = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 var numbers = [0,1,2,3,4,5,6,7,8,9];
-var specials = ["!","@","#","$","%","^","&","*","(",")","_","+"];
+var symbols = ["!","@","#","$","%","^","&","*","(",")","_","+"];
+
+var complexity = document.getElementById("value").value;
 
 
-var passwordLength = parseInt(prompt("Choose between 8 and 128?"))
+function generate() {
 
-var uppercaseAnswer = confirm("Click OK for uppercase");
-var lowercaseAnswer = confirm("Click OK for lowercase");
-var numbersAnswer = confirm("Click OK for numbers");
-var specialsAnswer = confirm("Click OK for specials");
+}
+
+
+
+
+
+
 
 document.getElementById("demo").onclick = function() {myFunction()};
 
@@ -53,7 +58,7 @@ console.log(uppercaseCapture);
 console.log(uppercaseAnswer);
 console.log(lowercaseAnswer);
 console.log(numbersAnswer);
-console.log(specialsAnswer);
+console.log(symbolsAnswer);
 
 function characterTotalFunction (characterTotal) {
   characterTotal * uppercaseFunctionTotal
@@ -75,7 +80,7 @@ function writePassword() {
   console.log(uppercase[Math.floor(Math.random() * uppercase.length)]);
   console.log(lowercase[Math.floor(Math.random() * lowercase.length)]);
   console.log(numbers[Math.floor(Math.random() * numbers.length)]);
-  console.log(specials[Math.floor(Math.random() * specials.length)]);
+  console.log(symbols[Math.floor(Math.random() * symbols.length)]);
 
   function myFunction() {
     var numbers = ["1", "2", "3"];
