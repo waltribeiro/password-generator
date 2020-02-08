@@ -1,91 +1,54 @@
-// Variables
+// Assignment Code
 var generateBtn = document.querySelector("#generate");
+var passwordText = document.querySelector("#password");
 
-var uppercaseArray = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];var lowercaseArray = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-var numbersArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-var symbolsArray = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+"];
+// don't use an array, use strings here instead
+var uppercase = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
+var lowercase = "abcdefghijklmnopqrstuvwxyz";
+var numbers = "0123456789";
+var symbols = "!@#$%^&*()?";
 
-// I'm trying to tie myButton() to the HTML's generate button
-
+// run the button function
 function myButton() {
-  var uppercaseInclude = confirm("Include uppercase?");
-  var lowercaseInclude = confirm("Include lowercase?");
-  var numbersInclude = confirm("Include numbers?");
-  var symbolsInclude = confirm("Include symbols?");
+  var passwordLength = parseInt(prompt("How long should your password be?"));
+  
+  if(passwordLength < 8 || passwordLength > 128) {
+    alert("Please choose a password length from 8 to 128 characters");
+  } else {
+    var charactersChoices = ""; // start with an empty string
+    var uppercaseConfirm = confirm("Click OK to confirm including lowercase characters.");
+
+    if (uppercaseConfirm == true) {
+      charactersChoices += uppercase
+    }
+    var lowercaseConfirm = confirm("Click OK to confirm including uppercase characters.");
+
+    if (lowercaseConfirm == true) {
+      charactersChoices += lowercase
+    }
+    var numbersConfirm = confirm("Click OK to confirm including numbers.");
+
+    if (numbersConfirm == true) {
+      charactersChoices += numbers
+    }
+    var symbolsConfirm = confirm("Click OK to confirm including special characters.");
+    if (symbolsConfirm == true) {
+      charactersChoices += symbols
+    }
+
+    charactersChoices = charactersChoices.split(""); // Vip's split method, much simpler than the array 
+
+    var password = "";
+    for (var i = 0; i < passwordLength; i++) {
+      var charactersAll = charactersChoices[Math.floor(Math.random() * charactersChoices.length)];
+
+      password += charactersAll; // concatenate empty string + all the password strings
+
+    }
+
+    passwordText.value = password; // print the password into the textarea id="password"
+
+  }
 }
 
-// 4 functions that I will .concat or .append once my code works
-
-function uppercaseIndex() {
-  return Math.floor(Math.random() * uppercaseArray.length);
-}
-
-function lowercaseIndex() {
-  return Math.floor(Math.random() * lowercaseArray.length);
-}
-
-function numbersIndex() {
-  return Math.floor(Math.random() * numbersArray.length);
-}
-
-function symbolsIndex() {
-  return Math.floor(Math.random() * symbolsArray.length);
-}
-
-// checking the console to assure that my functions work
-
-console.log(uppercaseArray[uppercaseIndex()]);
-console.log(lowercaseArray[lowercaseIndex()]);
-console.log(numbersArray[numbersIndex()]);
-console.log(symbolsArray[symbolsIndex()]);
-
-document.getElementById("generate").onclick = function() {
-  uppercaseIndex();
-};
-
-function passwordQuestion() {
-  if (passwordLength > 8 && passwordLength <= 128) {
-    uppercaseCapture = [Math.floor(Math.random() * uppercase.length)];
-  }
-
-  console.log(uppercaseArray[uppercaseIndex()]);
-  console.log(lowercaseArray[lowercaseIndex()]);
-  console.log(numbersArray[numbersIndex()]);
-  console.log(symbolsArray[symbolsIndex()]);
-}
-
-generateBtn.addEventListener("click", uppercaseIndex);
-
-// PSEUDO CODE THAT IS NOT WORKING AS INTENDED
-
-//if (uppercaseAnswer = true || lowercaseAnswer = true || numbersAnswer = true || ) {
-//   var uppercaseTotal = uppercase[Math.floor(Math.random() * uppercase.length)];
-// }
-
-// if (lowercaseAnswer = true) {
-//   var lowercaseTotal = lowercase[Math.floor(Math.random() * lowercase.length)];
-//   return lowercaseTotal;
-// }
-
-// if (numbersAnswer = true) {
-//   var numbersTotal = numbers[Math.floor(Math.random() * numbers.length)];
-// }
-
-// if (specialsAnswer = true) {
-//   var specialsTotal = specials[Math.floor(Math.random() * specials.length)];
-// }
-
-
-  // var uppercaseFunctionTotal = function uppercaseFunction() {
-
-  //  uppercase[Math.floor(Math.random() * Array.length) + 1]
-  // return
-  // };
-
-// Write password to the #password input
-
-// uppercaseRandom * document.getElementById("value")
-
-// var uppercaseRandomTotal = uppercaseRandom + lowercaseRandom + numbersRandom + specialsRandom
-
-// Add event listener to generate button
+generateBtn.addEventListener("click", myButton)
