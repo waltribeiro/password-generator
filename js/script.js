@@ -43,12 +43,28 @@ function myButton() {
       var charactersAll = charactersChoices[Math.floor(Math.random() * charactersChoices.length)];
 
       password += charactersAll; // concatenate empty string + all the password strings
-
     }
-
     passwordText.value = password; // print the password into the textarea id="password"
-
   }
 }
 
 generateBtn.addEventListener("click", myButton)
+
+
+$(function() {
+    $('input').filter( function() {return this.type == 'range' } ).each(function() {  
+        var $slider = $(this),
+        $text_box = $('#'+$(this).attr('link-to'));
+
+        $text_box.val(this.value);
+console.log($text_box.val(this.value))
+        $slider.change(function() {
+            $text_box.val(this.value);
+        });
+
+        $text_box.change(function() {
+            $slider.val($text_box.val());
+        });
+
+    });
+});
