@@ -1,70 +1,81 @@
 // Assignment Code
-var generateBtn = document.querySelector("#generate");
+var generateBtn = document.getElementById("#generateButton");
 var passwordText = document.querySelector("#password");
 
 // don't use an array, use strings here instead
-var uppercase = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
-var lowercase = "abcdefghijklmnopqrstuvwxyz";
-var numbers = "0123456789";
-var symbols = "!@#$%^&*()?";
+var uppercaseArray = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
+var lowercaseArray = "abcdefghijklmnopqrstuvwxyz";
+var numberArray = "0123456789";
+var symbolArray = "!@#$%^&*()?";
+var passwordArray = [];
+var passwordLength = 34; // slider.value();
+var alertText = document.querySelector("#alertText");
+var sliderNumber = document.querySelector("#textBox");
 
-// run the button function
-function myButton() {
-  var passwordLength = parseInt(prompt("How long should your password be?"));
-  
-  if(passwordLength < 8 || passwordLength > 128) {
-    alert("Please choose a password length from 8 to 128 characters");
-  } else {
-    var charactersChoices = ""; // start with an empty string
-    var uppercaseConfirm = confirm("Click OK to confirm including lowercase characters.");
+generateBtn.addEventListener("click", writePassword());
 
-    if (uppercaseConfirm == true) {
-      charactersChoices += uppercase
-    }
-    var lowercaseConfirm = confirm("Click OK to confirm including uppercase characters.");
+// $("#generate").on("click", writePassword());
 
-    if (lowercaseConfirm == true) {
-      charactersChoices += lowercase
-    }
-    var numbersConfirm = confirm("Click OK to confirm including numbers.");
+function writePassword() {
+  $("passwordText").empty();
+    let useUppercase = uppercaseCheck.checked;
+    let useLowercase = lowercaseCheck.checked;
+    let useNumber = numberCheck.checked;
+    let useSymbol = symbolCheck.checked;
+    var val = document.getElementById("slider").value
 
-    if (numbersConfirm == true) {
-      charactersChoices += numbers
-    }
-    var symbolsConfirm = confirm("Click OK to confirm including special characters.");
-    if (symbolsConfirm == true) {
-      charactersChoices += symbols
-    }
+    console.log(document.querySelector("#oninput"));
+    console.log(document.getElementById("fPrice").innerHTML);
+    console.log($("input[name=walt2]").val());
+    console.log($(slider).val());
 
-    charactersChoices = charactersChoices.split(""); // Vip's split method, much simpler than the array 
+    if (
+      useUppercase == false &&
+      useLowercase == false &&
+      useNumber == false &&
+      useSymbol == false
+    ) {
+      alertText.textContent = "Please select at least one checkbox to continue";
+      return;
+    }
 
-    var password = "";
-    for (var i = 0; i < passwordLength; i++) {
-      var charactersAll = charactersChoices[Math.floor(Math.random() * charactersChoices.length)];
+    // Clears alert text if any issues existed previously
+    alertText.textContent = "";
+    // Establishes array password is made from
 
-      password += charactersAll; // concatenate empty string + all the password strings
-    }
-    passwordText.value = password; // print the password into the textarea id="password"
-  }
-}
+    if (useUppercase) {
+      passwordArray = passwordArray.concat(uppercaseArray);
+    }
+    if (useLowercase) {
+      passwordArray = passwordArray.concat(lowercaseArray);
+    }
+    if (useNumber) {
+      passwordArray = passwordArray.concat(numberArray);
+    }
+    if (useSymbol) {
+      passwordArray = passwordArray.concat(symbolArray);
+    }
 
-generateBtn.addEventListener("click", myButton)
+    if (
+      useLowercase == false &&
+      useUppercase == false &&
+      useNumber == false &&
+      useSymbol == false
+    ) {
+      alert(
+        "Password must include at least one of lower case letters, upper case letters, numbers, or special characters"
+      );
+    }
 
+    // generates a random password from selected Array
+    var password = "";
 
-$(function() {
-    $('input').filter( function() {return this.type == 'range' } ).each(function() {  
-        var $slider = $(this),
-        $text_box = $('#'+$(this).attr('link-to'));
+    for (var i = 0; i < passwordLength; i++) {
+      var x = passwordArray[Math.floor(Math.random() * passwordArray.length)];
+      password = password + x;
+    }
 
-        $text_box.val(this.value);
-console.log($text_box.val(this.value))
-        $slider.change(function() {
-            $text_box.val(this.value);
-        });
+    passwordText.textContent = password;
+    passwordArray = [];
 
-        $text_box.change(function() {
-            $slider.val($text_box.val());
-        });
-
-    });
-});
+};

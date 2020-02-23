@@ -178,32 +178,52 @@
       
       <div class="card">
 
-      <div class="slidecontainer">
+      <div id="sliderCount" class="slidecontainer">
         <p align="center">Length
-          <input type="range"  min="8" max="128" value="64" link-to="textBox">
-          <input type="text" id="textBox" style="width:50px">
+          <input type="range"  name="walt1" min="8" max="128" value="64" link-to="textBox">
+          <input type="text" name="walt2" id="textBox" style="width:50px">
         </p>
 
 <script class="cssdeck" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 
 
 
+
+<div>
+  <p>
+      <label>Price From:</label>
+      <input type="range" id="fromPrice" value="50" min="0" max="500" 
+          oninput="document.getElementById('fPrice').innerHTML = this.value" />
+      <label id="fPrice"></label>
+  </p>
+
+</div>
+
+
+<div name="myTemplate">
+  <input id="slider" type="range" min="50" max="100" step="10"  value="50">
+  <output id="output"></output>
+</div>
+
+
+
+
         <p align="center">
-          <input type="checkbox" name="vehicle3" value="Boat" checked>
+          <input id="uppercaseCheck" type="checkbox" name="uppercaseName" value="1" unchecked>
           <label style="margin-right:30px" for="vehicle2">Uppercase</label>
 
-          <input type="checkbox" name="vehicle3" value="Boat" checked>
+          <input id="lowercaseCheck" type="checkbox" name="lowercaseValue" value="1" checked>
           <label style="margin-right:30px" for="vehicle2">Lowercase</label>
 
           <br>
           
-          <input type="checkbox" name="vehicle3" value="Boat" checked>
+          <input id="numberCheck" type="checkbox" name="numbersValue" value="1" checked>
           <label style="margin-right:30px" for="vehicle2">Numbers</label>
 
-          <input type="checkbox" name="vehicle3" value="Boat" checked>
+          <input id="symbolCheck" type="checkbox" name="symbolsValue" value="1" checked>
           <label style="margin-right:30px" for="vehicle2">Symbols</label>
         </p>
-
+        <p id="alertText"></p>
       </div>
 
       <div class="card-body">
@@ -216,7 +236,7 @@
       </div>
 
       <div class="card-footer">
-        <button id="generate" class="btn">Generate Password</button>
+        <button id="generateButton" class="btn">Generate Password</button>
       </div>
 
     </div>
@@ -296,9 +316,6 @@
 <!-- Custom scripts for this template -->
 <script src="js/freelancer.js"></script>
 
-<!-- Piano JavaScript -->
-<link rel="stylesheet" href="css/piano.css">
-<script src="js/piano.js"></script>
 
 <!-- Password Generator -->
 <script src="js/script.js"></script>
