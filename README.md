@@ -16,6 +16,8 @@ I have other apps over at my [Github](http://waltrib.com)
 > The best thing about a boolean is even if you are wrong, you are only off by a bit.
 
 
+<img src="https://img.shields.io/badge/hello-whastsup-green">
+
 
 ## Screenshot
 <img src="img/screenshot.png">

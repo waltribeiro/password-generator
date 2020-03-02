@@ -1,33 +1,34 @@
-// Assignment Code
-var generateBtn = document.getElementById("#generateButton");
-var passwordText = document.querySelector("#password");
-
 // don't use an array, use strings here instead
-var uppercaseArray = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
-var lowercaseArray = "abcdefghijklmnopqrstuvwxyz";
-var numberArray = "0123456789";
-var symbolArray = "!@#$%^&*()?";
-var passwordArray = [];
-var passwordLength = 34; // slider.value();
+
+var generateButtonElement = document.getElementById("generateButton");
+var passwordText = document.querySelector("#passwordTextArea");
 var alertText = document.querySelector("#alertText");
-var sliderNumber = document.querySelector("#textBox");
+var uppercaseString = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
+var lowercaseString = "abcdefghijklmnopqrstuvwxyz";
+var numberString = "0123456789";
+var symbolString = "!@#$%^&*()?";
+var passwordArray = [];
+var passwordLength
+var passwordLengthText = document.getElementById("passwordLengthSlider").value
 
-generateBtn.addEventListener("click", writePassword());
+var x = document.getElementById("myBtn").textContent;
 
-// $("#generate").on("click", writePassword());
+generateButtonElement.addEventListener("click", writePassword);
+
+
 
 function writePassword() {
   $("passwordText").empty();
+  passwordLength = document.getElementById("passwordLengthSlider").innerHTML
+
     let useUppercase = uppercaseCheck.checked;
     let useLowercase = lowercaseCheck.checked;
     let useNumber = numberCheck.checked;
     let useSymbol = symbolCheck.checked;
-    var val = document.getElementById("slider").value
 
-    console.log(document.querySelector("#oninput"));
-    console.log(document.getElementById("fPrice").innerHTML);
-    console.log($("input[name=walt2]").val());
-    console.log($(slider).val());
+
+    console.log(document.getElementById("passwordLengthSlider").value);
+
 
     if (
       useUppercase == false &&
@@ -39,32 +40,21 @@ function writePassword() {
       return;
     }
 
-    // Clears alert text if any issues existed previously
-    alertText.textContent = "";
-    // Establishes array password is made from
 
+    alertText.textContent = "";
+
+    // Establishes array password is made from
     if (useUppercase) {
-      passwordArray = passwordArray.concat(uppercaseArray);
+      passwordArray = passwordArray.concat(uppercaseString);
     }
     if (useLowercase) {
-      passwordArray = passwordArray.concat(lowercaseArray);
+      passwordArray = passwordArray.concat(lowercaseString);
     }
     if (useNumber) {
-      passwordArray = passwordArray.concat(numberArray);
+      passwordArray = passwordArray.concat(numberString);
     }
     if (useSymbol) {
-      passwordArray = passwordArray.concat(symbolArray);
-    }
-
-    if (
-      useLowercase == false &&
-      useUppercase == false &&
-      useNumber == false &&
-      useSymbol == false
-    ) {
-      alert(
-        "Password must include at least one of lower case letters, upper case letters, numbers, or special characters"
-      );
+      passwordArray = passwordArray.concat(symbolString);
     }
 
     // generates a random password from selected Array
@@ -75,7 +65,8 @@ function writePassword() {
       password = password + x;
     }
 
-    passwordText.textContent = password;
     passwordArray = [];
+    passwordText.textContent = password;
+
 
 };
